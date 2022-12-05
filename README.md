@@ -9,15 +9,15 @@
 ## Requirements:
 
 <ul>
-  <li>Python3<li>
-  <li>Pytorch<li>
-  <li>Tensorflows<li>
-  <li>OpenCV<li>
-  <li>Numpy<li>
+  <li>Python3</li>
+  <li>Pytorch</li>
+  <li>Tensorflows</li>
+  <li>OpenCV</li>
+  <li>Numpy</li>
 </ul>
 
 ## Steps for Running
 <ol>
-  <li>Install all requirements<li>
-  [code]python3 main.py[/code]
+  <li>Install all requirements</li>
+  <li>python3 main.py</li>
 </ol>
