@@ -18,6 +18,6 @@
 
 ## Steps for Running
 <ol>
-  <li>Install all requirements</li>
+  <li>Install all requirements (pip install -r requirements.txt)</li>
   <li>python3 main.py</li>
 </ol>
