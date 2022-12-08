@@ -17,6 +17,7 @@ import threading as th
 check = 0
 choice = ''
 src_choice = ''
+username_email = ''
 def open_popup(txt):
    top= Toplevel(tk_Window)
    top.geometry("700x150")
@@ -27,7 +28,7 @@ def btn_list(clicked, window_):
     window_.destroy()
     global choice
     if choice == 'Weapon and Face Detection':
-        choice = 'WeaponsFacesBest.pt'
+        choice = 'best_face.pt'
     else:
         choice = 'ShoeSizeBest.pt'
     if(clicked.lower() == 'webcam'):
@@ -69,12 +70,15 @@ def choice_window(user_text, pass_text):
     if(user_text.get() == '') or (pass_text.get() ==  ''):
         open_popup("Username or Password Fields cannot be empty!")
         return
+    global username_email
+    username_email = user_text.get()
+    print(username_email[-4:-1])
     tk_choice = Tk()
     tk_choice.geometry('400x400')
     tk_choice.title("Choice Window")
     options = ['Weapon and Face Detection', 'Shoe Size Detection']
     clicked = StringVar()
-    clicked.set(' ')
+    clicked.set('Weapon and Face Detection')
     drop = OptionMenu(tk_choice, clicked, *options)
     drop.pack()
     btn3 = Button(tk_choice, text='Submit', command=lambda: img_window(clicked.get(), tk_choice)).pack()
@@ -100,7 +104,7 @@ def sign_up():
     frame_2 = ttk.Frame(tk_signup)
     frame_2.pack()
     frame_2.place(x=300,y=100)
-    Label(frame_2, text='Username').pack()
+    Label(frame_2, text='Email').pack()
     signup_user = StringVar()
     Entry(frame_2, textvariable=signup_user).pack()
     Label(frame_2, text='Password').pack()
@@ -123,7 +127,7 @@ try:
     frame_.pack()
     frame_.place(x=300,y=100)
     Label(frame_, text="").pack()
-    Label(frame_, text='Username', font=('Fira Code', 20)).pack()
+    Label(frame_, text='Email', font=('Fira Code', 20)).pack()
     user_text = StringVar()
     Username = Entry(frame_, textvariable=user_text).pack()
     Label(frame_, text='Password', font=('Fira Code', 20)).pack()

@@ -39,9 +39,14 @@ from PIL import Image
 import numpy as np
 import glob
 from tkinter import filedialog as fd
+import smtplib
 
 popup_check = True
 playsound_check = True
+# email_check = True
+# sendemail = ''
+# with open('pass.txt', 'r') as file:
+#     password = file.read().strip()
 
 def open_popup():
     print("In POPUP")
@@ -56,7 +61,26 @@ def play_sound():
     # if playsound_check == True:
     #playsound_check = False
     print("In Play_sound!!")
-    playsound('/Users/sainishwanth/Documents/College/Semester-5/Projects/Crime-Scene-Analysis/yolov5/alarm.wav')
+    playsound('alarm.wav')
+
+def Send_Mail(sendemail,remail): #Function for sending a mail to the user
+    global password
+    global email_check
+    server = smtplib.SMTP('smtp.gmail.com',587)
+    server.ehlo()
+    server.starttls()
+    server.ehlo()
+
+    server.login(sendemail,password)
+
+    body = "Intruder Detected"
+    if email_check == True:
+        server.sendmail(sendemail,remail,body)
+        email_check = False
+        return
+    email_check = False
+    return
+    
 
 dir_ = ''
 
@@ -103,6 +127,18 @@ def run(
         vid_stride=1,  # video frame-rate stride
         dir_= False
 ):
+    # global email_check
+    # global password
+    # global email_check
+    # global sendemail
+    # server = smtplib.SMTP('smtp.gmail.com',587)
+    # server.ehlo()
+    # server.starttls()
+    # server.ehlo()
+
+    # server.login('sainishwanthraj@gmail.com',password)
+
+    body = "Intruder Detected"
     source = str(source)
     save_img = not nosave and not source.endswith('.txt')  # save inference images
     is_file = Path(source).suffix[1:] in (IMG_FORMATS + VID_FORMATS)
@@ -174,11 +210,19 @@ def run(
             imc = im0.copy() if save_crop else im0  # for save_crop
             annotator = Annotator(im0, line_width=line_thickness, example=str(names))
             if len(det):
-                global playsound_check
-                if playsound_check == True:
-                    playsound_check = False
-                    t1 = threading.Thread(target=play_sound)
-                    t1.start()
+                # try:
+                #     if sendemail[-4:-1] == '.co':
+                #         if email_check == True:
+                #             server.sendmail('sainishwanthraj@gmail.com',sendemail,body)
+                #             email_check = False
+                # except:
+                #     pass
+                # Send_Mail('sainishwanthraj@gmail.com', 'sainishwanthraj@gmail.com')
+                # global playsound_check
+                # if playsound_check == True:
+                #     playsound_check = False
+                #     t1 = threading.Thread(target=play_sound)
+                #     t1.start()
                 # Rescale boxes from img_size to im0 size
                 det[:, :4] = scale_boxes(im.shape[2:], det[:, :4], im0.shape).round()
 
