@@ -43,11 +43,7 @@ import smtplib
 
 popup_check = True
 playsound_check = True
-# email_check = True
-# sendemail = ''
-# with open('pass.txt', 'r') as file:
-#     password = file.read().strip()
-
+# Custom Popup display 
 def open_popup():
     print("In POPUP")
     top= Tk()
