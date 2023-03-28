@@ -1,4 +1,4 @@
-# Crime Scene Analysis
+# CrimEye - The Crime Scene Analysis Tool
 
 ## Contents:
 
