@@ -19,5 +19,5 @@
 ## Steps for Running
 <ol>
   <li>Install all requirements (pip install -r requirements.txt)</li>
-  <li>python3 main.py</li>
+  <li>python main.py</li>
 </ol>
